@@ -33,7 +33,10 @@ const SearchBar = ({ setUserData }) => {
   };
   return (
     <>
-      <form id='form' class='input-container pos-rel' onSubmit={formHandler}>
+      <form
+        id='form'
+        className='input-container pos-rel'
+        onSubmit={formHandler}>
         <input
           type='text'
           name='ip-address'

@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import dotenv from "dotenv";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SearchBar from "./components/SearchBar";
 import InfoCard from "./components/InfoCard";
@@ -21,20 +20,23 @@ function App() {
       `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}`
     )
       .then((response) => response.json())
-      .then((data) =>
-        setUserData({
-          ip: data.ip,
-          location: `${data.location.city}, ${data.location.region}, ${data.location.postalCode}`,
-          timezone: `UTC${data.location.timezone}`,
-          isp: data.isp,
-          latlng: [data.location.lat, data.location.lng],
-        })
-      );
+      .then((data) => {
+        if (data) {
+          setUserData({
+            ip: data.ip,
+            location: `${data.location.city}, ${data.location.region}, ${data.location.postalCode}`,
+            timezone: `UTC${data.location.timezone}`,
+            isp: data.isp,
+            latlng: [data.location.lat, data.location.lng],
+          });
+        }
+      });
   };
 
   useEffect(() => {
     console.log(process.env.REACT_APP_API_KEY);
     //calling funct
+
     getClientData();
   }, []);
 
