@@ -4,14 +4,16 @@ const SearchBar = ({ setUserData }) => {
   const [address, setAddress] = useState("");
   const [error, setError] = useState(false);
 
+  // Get Details From Form Submit
   const formHandler = async (e) => {
     e.preventDefault();
     try {
       if (address) {
         await fetch(
-          `https://geo.ipify.org/api/v1?apiKey=at_lAtjBUsOMq5lhFPbheWbDkNfSjQ3F&ipAddress=${address}`
+          `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${address}`
         )
           .then((response) => response.json())
+
           .then((data) =>
             setUserData({
               ip: data.ip,
@@ -40,11 +42,13 @@ const SearchBar = ({ setUserData }) => {
           onChange={(e) => setAddress(e.target.value)}
         />
         <button type='submit'>
-          <img src='/images/icon-arrow.svg' alt='' />
+          <svg xmlns='http://www.w3.org/2000/svg' width='11' height='14'>
+            <path fill='none' stroke='#FFF' stroke-width='3' d='M2 1l6 6-6 6' />
+          </svg>
         </button>
       </form>
       {error && (
-        <div className='Input-Error'>
+        <div className='Input-Error '>
           <h4>Please try again</h4>
         </div>
       )}

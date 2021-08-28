@@ -1,10 +1,12 @@
 import { React, useState, useEffect } from "react";
+import dotenv from "dotenv";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SearchBar from "./components/SearchBar";
 import InfoCard from "./components/InfoCard";
 import Map from "./components/Map";
 
 function App() {
+  // Custom Location State
   const [userData, setUserData] = useState({
     ip: "8.8.8.8",
     location: "Mountain View, California, 94035",
@@ -13,9 +15,10 @@ function App() {
     latlng: null,
   });
 
+  // Get User Information when DOM Loads
   const getClientData = async () => {
     await fetch(
-      `https://geo.ipify.org/api/v1?apiKey=at_lAtjBUsOMq5lhFPbheWbDkNfSjQ3F`
+      `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}`
     )
       .then((response) => response.json())
       .then((data) =>
@@ -30,6 +33,8 @@ function App() {
   };
 
   useEffect(() => {
+    console.log(process.env.REACT_APP_API_KEY);
+    //calling funct
     getClientData();
   }, []);
 
