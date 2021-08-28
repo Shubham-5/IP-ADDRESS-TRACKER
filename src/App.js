@@ -21,7 +21,7 @@ function App() {
     )
       .then((response) => response.json())
       .then((data) => {
-        if (data) {
+        if (data.location !== undefined) {
           setUserData({
             ip: data.ip,
             location: `${data.location.city}, ${data.location.region}, ${data.location.postalCode}`,
@@ -29,12 +29,19 @@ function App() {
             isp: data.isp,
             latlng: [data.location.lat, data.location.lng],
           });
+        } else {
+          setUserData({
+            ip: data.ip,
+            location: `undefined`,
+            timezone: `UTC undefined`,
+            isp: data.isp,
+            latlng: [undefined],
+          });
         }
       });
   };
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_KEY);
     //calling funct
 
     getClientData();
