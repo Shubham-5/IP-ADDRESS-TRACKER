@@ -12,8 +12,6 @@ This is a solution to the [IP address tracker challenge on Frontend Mentor](http
   - [Built with](#built-with)
 - [Author](#author)
 
-9c460dbc02763a206e5507085d78bdf1277fdc9caa3dcbca30457f1c
-
 ## Overview
 
 ### The challenge
@@ -27,11 +25,11 @@ Users should be able to:
 
 ### Screenshot
 
-![ss](/images/Screenshot-React-App.png)
+![](/images/Screenshot-React-App.png)
 
 ### Links
 
-- Solution URL: [https://github.com/Shubham-5/IP-ADDRESS-TRACKER]
+- Solution URL: [https://ip-address-tracker-shubham-rajput.vercel.app]
 
 ## My process
 
