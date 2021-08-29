@@ -25,7 +25,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](/images/Screenshot-React-App.png)
+![](./src/images/Screenshot-React-App.png)
 
 ### Links
 
