@@ -10,7 +10,7 @@ const SearchBar = ({ setUserData }) => {
     try {
       if (address) {
         await fetch(
-          `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${address}`
+          `https://geo.ipify.org/api/v1?apiKey=at_xzlpTT7dNpNfP7D0NMM3RnZ9bf6Sd&ipAddress=${address}`
         )
           .then((response) => response.json())
 
