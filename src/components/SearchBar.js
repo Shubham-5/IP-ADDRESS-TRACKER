@@ -17,7 +17,7 @@ const SearchBar = ({ setUserData }) => {
           .then((data) =>
             setUserData({
               ip: data.ip,
-              location: `${data.location.city}, ${data.location.region}, ${data.location.postalCode}`,
+              location: data.location,
               timezone: `UTC${data.location.timezone}`,
               isp: data.isp,
               latlng: [data.location.lat, data.location.lng],
