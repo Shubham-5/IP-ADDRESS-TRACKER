@@ -5,11 +5,6 @@ import InfoCard from "./components/InfoCard";
 import Map from "./components/Map";
 
 function App() {
-  //  ip: "8.8.8.8",
-  //   location: "Mountain View, California, 94035",
-  //   timezone: "UTC-05:00",
-  //   isp: "Google LLC",
-  //   latlng: null,
 
   // Custom Location State
   const [userData, setUserData] = useState({
@@ -27,11 +22,11 @@ function App() {
     //calling funct
     const getClientData = async () => {
       await fetch(
-        `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}`
+        "https://geo.ipify.org/api/v1?apiKey=at_xzlpTT7dNpNfP7D0NMM3RnZ9bf6Sd"
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log([data]);
+          console.log(data);
           setUserData({
             ip: data.ip,
             location: data.location,
