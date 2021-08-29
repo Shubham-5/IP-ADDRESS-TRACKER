@@ -5,45 +5,45 @@ import InfoCard from "./components/InfoCard";
 import Map from "./components/Map";
 
 function App() {
+  //  ip: "8.8.8.8",
+  //   location: "Mountain View, California, 94035",
+  //   timezone: "UTC-05:00",
+  //   isp: "Google LLC",
+  //   latlng: null,
+
   // Custom Location State
   const [userData, setUserData] = useState({
-    ip: "8.8.8.8",
-    location: "Mountain View, California, 94035",
-    timezone: "UTC-05:00",
-    isp: "Google LLC",
+    ip: "",
+    location: "",
+    timezone: "",
+    isp: "",
     latlng: null,
   });
+  const [error, setError] = useState(false);
 
   // Get User Information when DOM Loads
-  const getClientData = async () => {
-    await fetch(
-      `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.location !== undefined) {
+
+  useEffect(() => {
+    //calling funct
+    const getClientData = async () => {
+      await fetch(
+        `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log([data]);
           setUserData({
             ip: data.ip,
-            location: `${data.location.city}, ${data.location.region}, ${data.location.postalCode}`,
+            location: data.location,
             timezone: `UTC${data.location.timezone}`,
             isp: data.isp,
             latlng: [data.location.lat, data.location.lng],
           });
-        } else {
-          setUserData({
-            ip: data.ip,
-            location: `undefined`,
-            timezone: `UTC undefined`,
-            isp: data.isp,
-            latlng: [undefined],
-          });
-        }
-      });
-  };
-
-  useEffect(() => {
-    //calling funct
-
+        })
+        .catch(function (error) {
+          setError(error.response.data.messages);
+        });
+    };
     getClientData();
   }, []);
 
@@ -59,7 +59,7 @@ function App() {
         </div>
 
         <div className='result-info '>
-          <InfoCard userData={userData} />
+          <InfoCard userData={userData} error={error} />
         </div>
 
         <div id='map' className='map-container'>
